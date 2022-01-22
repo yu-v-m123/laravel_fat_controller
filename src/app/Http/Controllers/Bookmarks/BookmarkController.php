@@ -50,6 +50,7 @@ class BookmarkController extends Controller
         SEOTools::setTitle('ブックマーク一覧');
 
         $bookmarks = Bookmark::query()->with(['category', 'user'])->latest('id')->paginate(10);
+        dd($bookmarks);
 
         $top_categories = BookmarkCategory::query()->withCount('bookmarks')->orderBy('bookmarks_count', 'desc')->orderBy('id')->take(10)->get();
 
